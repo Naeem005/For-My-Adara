@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
 const envelope = document.getElementById("envelope");
@@ -9,9 +8,7 @@ const question = document.getElementById("question");
 let opened = false;
 let page = 1;
 
-/* =========================
-   💖 HEARTS
-========================= */
+/* 💖 hearts */
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -25,12 +22,9 @@ function createHeart() {
 
     setTimeout(() => heart.remove(), 6000);
 }
-
 setInterval(createHeart, 250);
 
-/* =========================
-   💌 ENVELOPE
-========================= */
+/* 💌 envelope */
 envelope.addEventListener("click", () => {
     if (!opened) {
         envelope.classList.add("open");
@@ -38,16 +32,13 @@ envelope.addEventListener("click", () => {
     }
 });
 
-/* =========================
-   😭 NO BUTTON RUNAWAY (FIXED)
-========================= */
+/* 😭 no button */
 function moveNo() {
     const card = document.getElementById("main-card");
 
     const maxX = card.offsetWidth - noBtn.offsetWidth;
     const maxY = card.offsetHeight - noBtn.offsetHeight;
 
-    noBtn.style.position = "absolute";
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
 }
@@ -58,27 +49,23 @@ noBtn.addEventListener("touchstart", (e) => {
     moveNo();
 });
 
-/* =========================
-   FLOW
-========================= */
+/* flow */
 yesBtn.addEventListener("click", (e) => {
     e.stopPropagation();
 
     if (page === 1) {
         page = 2;
-        question.textContent = "I know that this may not seem like much but i hope you like it! Will you please forgive me? 🥺❤️";
-        yesBtn.textContent = "Yes i forgive my amazing boy🥰";
+        question.textContent = "I know that this may not seem like much but I hope you like it 🥺❤️ Will you please forgive me?";
+        yesBtn.textContent = "Yes I forgive you 🥰";
         noBtn.style.display = "block";
     } else {
-        question.textContent = "Teehee🥰 Thank you for forgiving me princess❤️😛. Also i added our favorite pictures together for you to enjoy and remember our first time meeting at our spot and since this is a digital card you can keep it forever!🥰";
+        question.textContent = "Thank you for forgiving me ❤️ I love you 🥺✨";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
     }
 });
 
-/* =========================
-   🔍 LIGHTBOX
-========================= */
+/* lightbox */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
