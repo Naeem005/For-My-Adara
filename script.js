@@ -36,13 +36,12 @@ yesBtn.addEventListener('click', () => {
         
     } else if (currentPage === 2) {
         // --- TRANSITION TO SUCCESS PAGE ---
-        question.textContent = "Yay! Thank you for forgiving me! I love you! ❤️✨";
+        question.textContent = "Yay! Thank you for forgiving me princess!❤️✨";
         
         // Switch to a happy, hugging cat/animal GIF
-        gif.src = "https://giphy.com";
+        gif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW5nNXN4YTM4MjE1bHBvaTFtMWNzdHpreXdkdG91dHU5emtyaXZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IzXiddo2twMmdmU8Lv/giphy.gif";
         
-        // Hide the runaway button permanently
+      // Hide the runaway button permanently
         noBtn.style.display = 'none';
     }
-});
-
+}); // <-- Make sure this closing brace, parenthesis, and semicolon are here!
