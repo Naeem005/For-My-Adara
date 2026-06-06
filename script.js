@@ -70,7 +70,7 @@ yesBtn.addEventListener("click", (e) => {
         yesBtn.textContent = "Yes 🥰";
         noBtn.style.display = "block";
     } else {
-        question.textContent = "Thank you for forgiving me ❤️ I love you 🥺✨";
+        question.textContent = "Thank you for forgiving me princess❤️🥺✨";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
     }
