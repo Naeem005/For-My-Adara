@@ -1,6 +1,5 @@
-
 /* =========================
-   🌸 PAGE LAYOUT (FIXED SCROLL)
+   🌸 PAGE LAYOUT
 ========================= */
 body {
     margin: 0;
@@ -10,13 +9,47 @@ body {
     overflow-x: hidden;
 }
 
-/* CENTERING WRAPPER (IMPORTANT FIX) */
+/* CENTER WRAPPER */
 .page-wrapper {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   📸 BACKGROUND COLLAGE
+========================= */
+.bg-collage {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-collage img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    opacity: 0.18;
+    filter: blur(2px);
+    animation: floatSlow 18s infinite ease-in-out;
+}
+
+.bg-collage img:nth-child(1) { top: 10%; left: 5%; }
+.bg-collage img:nth-child(2) { top: 20%; right: 10%; }
+.bg-collage img:nth-child(3) { bottom: 15%; left: 15%; }
+.bg-collage img:nth-child(4) { bottom: 10%; right: 5%; }
+
+@keyframes floatSlow {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
 }
 
 /* =========================
@@ -26,7 +59,7 @@ body {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 999;
+    z-index: 3;
 }
 
 .heart {
@@ -53,6 +86,7 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     overflow: visible;
+    z-index: 4;
 }
 
 .envelope-wrapper::before {
@@ -86,7 +120,7 @@ body {
 }
 
 /* =========================
-   💌 CARD (CINEMATIC + SCROLL SAFE)
+   💌 CARD
 ========================= */
 .card-container {
     position: absolute;
@@ -101,7 +135,6 @@ body {
     padding: 20px 10px;
     border-radius: 10px;
     text-align: center;
-    box-sizing: border-box;
 
     opacity: 0;
     transform: translateY(30px) scale(0.95);
@@ -114,7 +147,6 @@ body {
     transform: translateY(-40px) scale(1);
 }
 
-/* hide scrollbar */
 .card-container::-webkit-scrollbar {
     display: none;
 }
@@ -164,7 +196,7 @@ img {
 ========================= */
 h1 {
     color: #ff4d6d;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* =========================
@@ -198,7 +230,7 @@ button {
 }
 
 /* =========================
-   🔍 LIGHTBOX (FIXED FULLSCREEN)
+   🔍 LIGHTBOX
 ========================= */
 .lightbox {
     position: fixed;
@@ -217,5 +249,4 @@ button {
     width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 10px;
 }
