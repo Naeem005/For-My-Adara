@@ -66,11 +66,11 @@ yesBtn.addEventListener("click", (e) => {
 
     if (page === 1) {
         page = 2;
-        question.textContent = "Will you please forgive me? 🥺❤️";
-        yesBtn.textContent = "Yes 🥰";
+        question.textContent = "I know that this may not seem like much but i hope you like it! Will you please forgive me? 🥺❤️";
+        yesBtn.textContent = "Yes i forgive my amazing boy🥰";
         noBtn.style.display = "block";
     } else {
-        question.textContent = "Thank you for forgiving me ❤️ I love you 🥺✨";
+        question.textContent = "Teehee🥰 Thank you for forgiving me princess❤️😛. Also i added our favorite pictures together for you to enjoy and remember our first time meeting at our spot and since this is a digital card you can keep it forever!🥰";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
     }
