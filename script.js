@@ -70,7 +70,7 @@ yesBtn.addEventListener("click", (e) => {
         yesBtn.textContent = "Yes 🥰";
         noBtn.style.display = "block";
     } else {
-        question.textContent = "Teehee🥰 Thank you for forgiving me princess❤️😛. Also i added our favorite pictures together for you to enjoy and remember our first time meeting at our spot and since this is a digital card you can keep it forever!";
+        question.textContent = "Teehee🥰 Thank you for forgiving me princess❤️😛. Also i added our favorite pictures together for you to enjoy and remember our first time meeting at our spot and since this is a digital card you can keep it forever!🥰";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
     }
