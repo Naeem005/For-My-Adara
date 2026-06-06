@@ -1,5 +1,5 @@
 /* =========================
-   🌸 BASE LAYOUT
+   🌸 BASE
 ========================= */
 body {
     margin: 0;
@@ -13,14 +13,13 @@ body {
 }
 
 /* =========================
-   💖 FLOATING HEARTS
+   💖 HEARTS
 ========================= */
 .hearts {
     position: fixed;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    overflow: hidden;
     top: 0;
     left: 0;
     z-index: 999;
@@ -30,19 +29,12 @@ body {
     position: absolute;
     bottom: -20px;
     color: #ff4d6d;
-    opacity: 0.8;
     animation: floatUp linear forwards;
 }
 
 @keyframes floatUp {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
 /* =========================
@@ -56,10 +48,9 @@ body {
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    overflow: visible; /* IMPORTANT FIX */
+    overflow: visible;
 }
 
-/* flap */
 .envelope-wrapper::before {
     content: '';
     position: absolute;
@@ -69,7 +60,7 @@ body {
     border-right: 150px solid transparent;
     border-top: 110px solid #ff93a8;
     transform-origin: top;
-    transition: transform 0.5s ease;
+    transition: 0.5s ease;
     z-index: 3;
 }
 
@@ -77,7 +68,6 @@ body {
     transform: rotateX(180deg);
 }
 
-/* pocket */
 .envelope-wrapper::after {
     content: '';
     position: absolute;
@@ -92,7 +82,7 @@ body {
 }
 
 /* =========================
-   💌 CARD (FIXED - NO MORE BUGS)
+   💌 CARD (CINEMATIC)
 ========================= */
 .card-container {
     position: absolute;
@@ -105,60 +95,56 @@ body {
     text-align: center;
     box-sizing: border-box;
     opacity: 0;
-    transform: translateY(20px); /* small hidden offset */
-    transition: 0.5s ease;
+    transform: translateY(30px) scale(0.95);
+    transition: 0.8s ease;
     z-index: 2;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* CARD OPEN STATE (SAFE VERSION) */
 .envelope-wrapper.open .card-container {
     opacity: 1;
-    transform: translateY(-40px); /* FIXED (no off-screen movement) */
-    z-index: 10;
+    transform: translateY(-40px) scale(1);
 }
 
 /* =========================
-   🖼 IMAGES / GIF
+   🖼 IMAGE + GIF
 ========================= */
 img {
     width: 110px;
     height: 110px;
-    margin-bottom: 10px;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 /* =========================
-   💖 PHOTO CAROUSEL
+   📸 SWIPE GALLERY
 ========================= */
 .photo-carousel {
     width: 240px;
-    overflow: hidden;
+    overflow-x: auto;
+    display: flex;
+    gap: 10px;
     margin: 10px auto;
-    border-radius: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.photo-carousel::-webkit-scrollbar {
+    display: none;
 }
 
 .photo-track {
     display: flex;
-    width: max-content;
-    animation: slide 12s linear infinite;
+    gap: 10px;
 }
 
 .photo-track img {
-    width: 65px;
-    height: 65px;
-    object-fit: cover;
+    width: 70px;
+    height: 70px;
     border-radius: 10px;
-    margin-right: 5px;
     border: 2px solid #ff4d6d;
-}
-
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    flex-shrink: 0;
+    scroll-snap-align: center;
 }
 
 /* =========================
@@ -167,39 +153,55 @@ img {
 h1 {
     color: #ff4d6d;
     font-size: 18px;
-    margin-bottom: 10px;
 }
 
 /* =========================
-   🔘 BUTTONS (FIXED)
+   🔘 BUTTONS
 ========================= */
 .button-group {
     position: relative;
     height: 50px;
     margin-top: 10px;
-    z-index: 20;
 }
 
 button {
     padding: 8px 18px;
     font-size: 14px;
-    font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
 
 #yes-btn {
-    background-color: #ff4d6d;
+    background: #ff4d6d;
     color: white;
-    position: relative;
-    z-index: 30;
 }
 
 #no-btn {
-    background-color: #778ca3;
+    background: #778ca3;
     color: white;
     position: absolute;
     display: none;
-    z-index: 30;
+}
+
+/* =========================
+   🔍 LIGHTBOX
+========================= */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.lightbox img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
 }
