@@ -9,44 +9,112 @@ body {
     overflow: hidden;
 }
 
+/* The Envelope Wrapper */
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #ffb3c1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+/* Envelope Flap */
+.envelope-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #ff93a8;
+    transform-origin: top;
+    transition: transform 0.4s ease 0.2s;
+    z-index: 3;
+}
+
+/* Inside Pocket front cover */
+.envelope-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid #ffccd5;
+    border-right: 150px solid #ffccd5;
+    border-bottom: 100px solid #ffccd5;
+    border-top: 100px solid transparent;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 2;
+}
+
+/* Open State Animation */
+.envelope-wrapper.open::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+/* The Secret Letter Card Inside */
 .card-container {
-    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 270px;
     background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    max-width: 400px;
-    width: 90%;
+    padding: 20px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.5s ease 0.5s, opacity 0.5s ease;
+    transform: translateY(0);
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Slide up out of envelope */
+.envelope-wrapper.open .card-container {
+    transform: translateY(-160px);
+    opacity: 1;
+    z-index: 5;
+    width: 320px;
+    left: -10px;
 }
 
 img {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
+    width: 110px;
+    height: 110px;
+    margin-bottom: 10px;
 }
 
 h1 {
     color: #ff4d6d;
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .button-group {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     position: relative;
-    height: 50px;
+    height: 40px;
 }
 
 button {
-    padding: 12px 25px;
-    font-size: 16px;
+    padding: 8px 18px;
+    font-size: 14px;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.1s ease;
 }
 
 #yes-btn {
@@ -57,13 +125,5 @@ button {
 #no-btn {
     background-color: #778ca3;
     color: white;
-
-    #no-btn {
-    background-color: #778ca3;
-    color: white;
-    position: absolute;
-    z-index: 999; /* This keeps it on top of everything else */
-}
-
     position: absolute;
 }
