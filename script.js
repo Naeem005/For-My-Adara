@@ -3,13 +3,16 @@ const yesBtn = document.getElementById('yes-btn');
 const question = document.getElementById('question');
 const gif = document.getElementById('card-gif');
 
-// Move the No button when hovered or touched
+// Track which page the user is on (Page 1 or Page 2)
+let currentPage = 1;
+
+// Hide the runaway button on Page 1 so she is forced to click Next
+noBtn.style.display = 'none';
+
+// This function makes the button teleport
 function moveNoButton() {
-    // Calculate random position within screen bounds
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    
-    // Teleport the button
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
 }
@@ -17,13 +20,29 @@ function moveNoButton() {
 noBtn.addEventListener('mouseenter', moveNoButton);
 noBtn.addEventListener('touchstart', moveNoButton);
 
-// What happens when she finally clicks Yes
+// Handle the button clicks
 yesBtn.addEventListener('click', () => {
-    question.textContent = "Yay! I knew you would say yes! ❤️🥰";
-    
-    // Switch to a celebration GIF
-    gif.src = "https://giphy.com";
-    
-    // Hide the No button entirely
-    noBtn.style.display = 'none';
+    if (currentPage === 1) {
+        // --- TRANSITION TO PAGE 2 ---
+        currentPage = 2;
+        
+        // Update text and buttons
+        question.textContent = "Will you please forgive me? 🥺❤️";
+        yesBtn.textContent = "Yes, I forgive you 🥰";
+        noBtn.textContent = "No 😤";
+        
+        // Make the runaway "No" button appear
+        noBtn.style.display = 'inline-block';
+        
+    } else if (currentPage === 2) {
+        // --- TRANSITION TO SUCCESS PAGE ---
+        question.textContent = "Yay! Thank you for forgiving me! I love you! ❤️✨";
+        
+        // Switch to a happy, hugging cat/animal GIF
+        gif.src = "https://giphy.com";
+        
+        // Hide the runaway button permanently
+        noBtn.style.display = 'none';
+    }
 });
+
