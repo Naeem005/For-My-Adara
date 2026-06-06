@@ -5,63 +5,55 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ffe6e6;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     overflow: hidden;
 }
 
-/* The Envelope Wrapper */
+/* Envelope */
 .envelope-wrapper {
     position: relative;
     width: 300px;
     height: 200px;
     background-color: #ffb3c1;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
 }
 
-/* Envelope Flap */
+/* Flap */
 .envelope-wrapper::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
     border-top: 110px solid #ff93a8;
+    transition: transform 0.5s ease;
     transform-origin: top;
-    transition: transform 0.4s ease 0.2s;
     z-index: 3;
 }
 
-/* Inside Pocket front cover */
+/* Back pocket */
 .envelope-wrapper::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
-    height: 0;
     border-left: 150px solid #ffccd5;
     border-right: 150px solid #ffccd5;
     border-bottom: 100px solid #ffccd5;
     border-top: 100px solid transparent;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    z-index: 2;
+    border-radius: 10px;
+    z-index: 1;
 }
 
-/* Open State Animation */
+/* OPEN ANIMATION */
 .envelope-wrapper.open::before {
     transform: rotateX(180deg);
-    z-index: 0;
 }
 
-/* The Secret Letter Card Inside */
+/* CARD */
 .card-container {
     position: absolute;
     top: 10px;
@@ -70,44 +62,42 @@ body {
     background: white;
     padding: 20px 10px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
     text-align: center;
     box-sizing: border-box;
-    transition: transform 0.5s ease 0.5s, opacity 0.5s ease;
-    transform: translateY(0);
     opacity: 0;
-    z-index: 1;
+    transform: translateY(0);
+    transition: 0.5s ease;
+    z-index: 2;
 }
 
-/* Slide up out of envelope */
+/* CARD POP OUT */
 .envelope-wrapper.open .card-container {
-    transform: translateY(-160px);
     opacity: 1;
-    z-index: 5;
-    width: 320px;
-    left: -10px;
+    transform: translateY(-160px);
+    z-index: 10;
 }
 
+/* IMAGE */
 img {
     width: 110px;
     height: 110px;
     margin-bottom: 10px;
 }
 
+/* TEXT */
 h1 {
     color: #ff4d6d;
     font-size: 18px;
     margin-bottom: 20px;
 }
 
+/* BUTTON AREA */
 .button-group {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
     position: relative;
-    height: 40px;
+    height: 50px;
 }
 
+/* BUTTONS */
 button {
     padding: 8px 18px;
     font-size: 14px;
@@ -126,4 +116,5 @@ button {
     background-color: #778ca3;
     color: white;
     position: absolute;
+    display: none;
 }
