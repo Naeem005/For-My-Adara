@@ -9,12 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
     let envelopeOpened = false;
 
-    // Step 1: Open envelope
+    // 💖 HEARTS
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+        document.querySelector(".hearts").appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 250);
+
+    // 💌 OPEN ENVELOPE
     envelope.addEventListener('click', (e) => {
 
-        if (e.target.closest('button') || e.target.closest('.card-container')) {
-            return;
-        }
+        if (e.target.closest('button') || e.target.closest('.card-container')) return;
 
         if (!envelopeOpened) {
             envelope.classList.add('open');
@@ -22,24 +37,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Step 2: Move NO button
+    // 😭 RUNAWAY BUTTON
     function moveNoButton() {
         const card = document.getElementById('main-card');
 
         const maxX = card.offsetWidth - noBtn.offsetWidth - 20;
         const maxY = card.offsetHeight - noBtn.offsetHeight - 20;
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
-
-        noBtn.style.left = `${x}px`;
-        noBtn.style.top = `${y}px`;
+        noBtn.style.left = Math.random() * maxX + "px";
+        noBtn.style.top = Math.random() * maxY + "px";
     }
 
     noBtn.addEventListener('mouseenter', moveNoButton);
     noBtn.addEventListener('touchstart', moveNoButton);
 
-    // Step 3: Yes button logic
+    // 💖 FLOW
     yesBtn.addEventListener('click', (e) => {
         e.stopPropagation();
 
@@ -52,18 +64,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             noBtn.style.display = 'block';
 
-            // starting position
-            noBtn.style.left = '60%';
-            noBtn.style.top = '60%';
+            noBtn.style.left = "60%";
+            noBtn.style.top = "60%";
 
         } else if (currentPage === 2) {
 
             question.innerHTML = `
                 Thank you for forgiving me Princess ❤️<br><br>
-                I promise to do better for you 🥺✨
+                I promise I’ll do better for you 🥺✨
             `;
 
-            gif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW5nNXN4YTM4MjE1bHBvaTFtMWNzdHpreXdkdG91dHU5emtyaXZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IzXiddo2twMmdmU8Lv/giphy.gif";
+            gif.src = "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";
 
             yesBtn.style.display = "none";
             noBtn.style.display = "none";
