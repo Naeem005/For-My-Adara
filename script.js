@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 I promise to do better for you 🥺✨
             `;
 
-            gif.src = "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";
+            gif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW5nNXN4YTM4MjE1bHBvaTFtMWNzdHpreXdkdG91dHU5emtyaXZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IzXiddo2twMmdmU8Lv/giphy.gif";
 
             yesBtn.style.display = "none";
             noBtn.style.display = "none";
