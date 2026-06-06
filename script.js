@@ -29,7 +29,7 @@ function createHeart() {
 setInterval(createHeart, 250);
 
 /* =========================
-   💌 ENVELOPE OPEN
+   💌 ENVELOPE
 ========================= */
 envelope.addEventListener("click", () => {
     if (!opened) {
@@ -66,11 +66,11 @@ yesBtn.addEventListener("click", (e) => {
 
     if (page === 1) {
         page = 2;
-        question.textContent = "I know that this may not seem like much but i hope you like it! Will you please forgive me? 🥺❤️";
+        question.textContent = "Will you please forgive me? 🥺❤️";
         yesBtn.textContent = "Yes 🥰";
         noBtn.style.display = "block";
     } else {
-        question.textContent = "Teehee🥰 Thank you for forgiving me princess❤️😛. Also i added our favorite pictures together for you to enjoy and remember our first time meeting at our spot and since this is a digital card you can keep it forever!🥰";
+        question.textContent = "Thank you for forgiving me ❤️ I love you 🥺✨";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
     }
