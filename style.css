@@ -4,12 +4,43 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffe6e6;
+    background: linear-gradient(135deg, #ffe6e6, #fff0f5);
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
 
-/* Envelope */
+/* 💖 HEARTS LAYER */
+.hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    color: #ff4d6d;
+    animation: floatUp linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 💌 ENVELOPE */
 .envelope-wrapper {
     position: relative;
     width: 300px;
@@ -20,7 +51,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* Flap */
+/* flap */
 .envelope-wrapper::before {
     content: '';
     position: absolute;
@@ -29,12 +60,16 @@ body {
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
     border-top: 110px solid #ff93a8;
-    transition: transform 0.5s ease;
     transform-origin: top;
+    transition: transform 0.5s ease;
     z-index: 3;
 }
 
-/* Back pocket */
+.envelope-wrapper.open::before {
+    transform: rotateX(180deg);
+}
+
+/* pocket */
 .envelope-wrapper::after {
     content: '';
     position: absolute;
@@ -48,12 +83,7 @@ body {
     z-index: 1;
 }
 
-/* OPEN ANIMATION */
-.envelope-wrapper.open::before {
-    transform: rotateX(180deg);
-}
-
-/* CARD */
+/* 💌 CARD */
 .card-container {
     position: absolute;
     top: 10px;
@@ -70,34 +100,48 @@ body {
     z-index: 2;
 }
 
-/* CARD POP OUT */
 .envelope-wrapper.open .card-container {
     opacity: 1;
     transform: translateY(-160px);
     z-index: 10;
 }
 
-/* IMAGE */
+/* 🖼 GIF */
 img {
     width: 110px;
     height: 110px;
     margin-bottom: 10px;
 }
 
-/* TEXT */
+/* 💬 TEXT */
 h1 {
     color: #ff4d6d;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-/* BUTTON AREA */
+/* 📸 PHOTO GALLERY */
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.photo-gallery img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ff4d6d;
+}
+
+/* 🔘 BUTTONS */
 .button-group {
     position: relative;
     height: 50px;
 }
 
-/* BUTTONS */
 button {
     padding: 8px 18px;
     font-size: 14px;
