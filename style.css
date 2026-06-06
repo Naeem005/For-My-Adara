@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe6e6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.card-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 90%;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #ff4d6d;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    height: 50px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+#yes-btn {
+    background-color: #ff4d6d;
+    color: white;
+}
+
+#no-btn {
+    background-color: #778ca3;
+    color: white;
+    position: absolute;
+}
