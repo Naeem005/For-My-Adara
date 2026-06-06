@@ -66,11 +66,11 @@ yesBtn.addEventListener("click", (e) => {
 
     if (page === 1) {
         page = 2;
-        question.textContent = "Will you please forgive me? 🥺❤️";
+        question.textContent = "I know that this may not seem like much but i hope you like it! Will you please forgive me? 🥺❤️";
         yesBtn.textContent = "Yes 🥰";
         noBtn.style.display = "block";
     } else {
-        question.textContent = "Thank you for forgiving me princess❤️🥺✨";
+        question.textContent = "Teehee🥰 Thank you for forgiving me princess❤️🥺✨";
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
     }
