@@ -57,5 +57,13 @@ button {
 #no-btn {
     background-color: #778ca3;
     color: white;
+
+    #no-btn {
+    background-color: #778ca3;
+    color: white;
+    position: absolute;
+    z-index: 999; /* This keeps it on top of everything else */
+}
+
     position: absolute;
 }
