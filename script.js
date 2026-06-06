@@ -1,93 +1,96 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    const envelope = document.getElementById("envelope");
-    const yesBtn = document.getElementById("yes-btn");
-    const noBtn = document.getElementById("no-btn");
-    const question = document.getElementById("question");
+const envelope = document.getElementById("envelope");
+const yesBtn = document.getElementById("yes-btn");
+const noBtn = document.getElementById("no-btn");
+const question = document.getElementById("question");
 
-    let opened = false;
-    let page = 1;
+let opened = false;
+let page = 1;
 
-    /* =========================
-       💖 HEARTS
-    ========================= */
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerText = "❤️";
+/* =========================
+   💖 HEARTS
+========================= */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "❤️";
 
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
 
-        document.querySelector(".hearts").appendChild(heart);
+    document.querySelector(".hearts").appendChild(heart);
 
-        setTimeout(() => heart.remove(), 6000);
+    setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 250);
+
+/* =========================
+   💌 ENVELOPE OPEN
+========================= */
+envelope.addEventListener("click", () => {
+    if (!opened) {
+        envelope.classList.add("open");
+        opened = true;
     }
+});
 
-    setInterval(createHeart, 250);
+/* =========================
+   😭 NO BUTTON RUNAWAY (FIXED)
+========================= */
+function moveNo() {
+    const card = document.getElementById("main-card");
 
-    /* =========================
-       💌 ENVELOPE OPEN
-    ========================= */
-    envelope.addEventListener("click", (e) => {
-        if (!opened) {
-            envelope.classList.add("open");
-            opened = true;
-        }
-    });
+    const maxX = card.offsetWidth - noBtn.offsetWidth;
+    const maxY = card.offsetHeight - noBtn.offsetHeight;
 
-    /* =========================
-       😭 NO BUTTON RUNAWAY
-    ========================= */
-    function moveNo() {
-        const card = document.getElementById("main-card");
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+}
 
-        const maxX = card.offsetWidth - noBtn.offsetWidth;
-        const maxY = card.offsetHeight - noBtn.offsetHeight;
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveNo();
+});
 
-        noBtn.style.left = Math.random() * maxX + "px";
-        noBtn.style.top = Math.random() * maxY + "px";
+/* =========================
+   FLOW
+========================= */
+yesBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (page === 1) {
+        page = 2;
+        question.textContent = "Will you please forgive me? 🥺❤️";
+        yesBtn.textContent = "Yes 🥰";
+        noBtn.style.display = "block";
+    } else {
+        question.textContent = "Thank you for forgiving me ❤️ I love you 🥺✨";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
     }
+});
 
-    noBtn.addEventListener("mouseenter", moveNo);
-    noBtn.addEventListener("touchstart", moveNo);
+/* =========================
+   🔍 LIGHTBOX
+========================= */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
 
-    /* =========================
-       💌 FLOW
-    ========================= */
-    yesBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        if (page === 1) {
-            page = 2;
-
-            question.textContent = "Will you please forgive me? 🥺❤️";
-            yesBtn.textContent = "Yes 🥰";
-            noBtn.style.display = "block";
-
-        } else {
-            question.innerHTML = "Thank you for forgiving me ❤️ I love you 🥺✨";
-            yesBtn.style.display = "none";
-            noBtn.style.display = "none";
-        }
+document.querySelectorAll(".photo-track img").forEach(img => {
+    img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
     });
+});
 
-    /* =========================
-       🔍 LIGHTBOX
-    ========================= */
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-
-    document.querySelectorAll(".photo-track img").forEach(img => {
-        img.addEventListener("click", () => {
-            lightbox.style.display = "flex";
-            lightboxImg.src = img.src;
-        });
-    });
-
-    lightbox.addEventListener("click", () => {
-        lightbox.style.display = "none";
-    });
+lightbox.addEventListener("click", () => {
+    lightbox.style.display = "none";
+});
 
 });
