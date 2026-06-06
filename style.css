@@ -11,19 +11,6 @@ body {
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
-.button-group {
-    position: relative;
-    z-index: 20;
-}
-
-#yes-btn, #no-btn {
-    position: relative;
-    z-index: 30;
-}
-
-.card-container {
-    overflow: visible;
-}
 
 /* =========================
    💖 FLOATING HEARTS
@@ -69,6 +56,7 @@ body {
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: visible; /* IMPORTANT FIX */
 }
 
 /* flap */
@@ -104,7 +92,7 @@ body {
 }
 
 /* =========================
-   💌 CARD
+   💌 CARD (FIXED - NO MORE BUGS)
 ========================= */
 .card-container {
     position: absolute;
@@ -117,19 +105,20 @@ body {
     text-align: center;
     box-sizing: border-box;
     opacity: 0;
-    transform: translateY(0);
+    transform: translateY(20px); /* small hidden offset */
     transition: 0.5s ease;
     z-index: 2;
 }
 
+/* CARD OPEN STATE (SAFE VERSION) */
 .envelope-wrapper.open .card-container {
     opacity: 1;
-    transform: translateY(-160px);
+    transform: translateY(-40px); /* FIXED (no off-screen movement) */
     z-index: 10;
 }
 
 /* =========================
-   🖼 GIF + IMAGES
+   🖼 IMAGES / GIF
 ========================= */
 img {
     width: 110px;
@@ -182,11 +171,13 @@ h1 {
 }
 
 /* =========================
-   🔘 BUTTONS
+   🔘 BUTTONS (FIXED)
 ========================= */
 .button-group {
     position: relative;
     height: 50px;
+    margin-top: 10px;
+    z-index: 20;
 }
 
 button {
@@ -201,6 +192,8 @@ button {
 #yes-btn {
     background-color: #ff4d6d;
     color: white;
+    position: relative;
+    z-index: 30;
 }
 
 #no-btn {
@@ -208,4 +201,5 @@ button {
     color: white;
     position: absolute;
     display: none;
+    z-index: 30;
 }
