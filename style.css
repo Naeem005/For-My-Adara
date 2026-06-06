@@ -1,3 +1,6 @@
+/* =========================
+   🌸 BASE LAYOUT
+========================= */
 body {
     margin: 0;
     height: 100vh;
@@ -8,7 +11,10 @@ body {
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
-/* 💖 Floating Hearts */
+
+/* =========================
+   💖 FLOATING HEARTS
+========================= */
 .hearts {
     position: fixed;
     width: 100%;
@@ -24,38 +30,8 @@ body {
     position: absolute;
     bottom: -20px;
     color: #ff4d6d;
-    animation: floatUp linear forwards;
     opacity: 0.8;
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-    }
-}
-/* 💖 HEARTS LAYER */
-.hearts {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    z-index: 999;
-}
-
-.heart {
-    position: absolute;
-    bottom: -20px;
-    color: #ff4d6d;
     animation: floatUp linear forwards;
-    opacity: 0.8;
 }
 
 @keyframes floatUp {
@@ -69,7 +45,9 @@ body {
     }
 }
 
-/* 💌 ENVELOPE */
+/* =========================
+   💌 ENVELOPE
+========================= */
 .envelope-wrapper {
     position: relative;
     width: 300px;
@@ -112,7 +90,9 @@ body {
     z-index: 1;
 }
 
-/* 💌 CARD */
+/* =========================
+   💌 CARD
+========================= */
 .card-container {
     position: absolute;
     top: 10px;
@@ -135,37 +115,62 @@ body {
     z-index: 10;
 }
 
-/* 🖼 GIF */
+/* =========================
+   🖼 GIF + IMAGES
+========================= */
 img {
     width: 110px;
     height: 110px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
-/* 💬 TEXT */
+/* =========================
+   💖 PHOTO CAROUSEL
+========================= */
+.photo-carousel {
+    width: 240px;
+    overflow: hidden;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.photo-track {
+    display: flex;
+    width: max-content;
+    animation: slide 12s linear infinite;
+}
+
+.photo-track img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 5px;
+    border: 2px solid #ff4d6d;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================
+   💬 TEXT
+========================= */
 h1 {
     color: #ff4d6d;
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-/* 📸 PHOTO GALLERY */
-.photo-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.photo-gallery img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 2px solid #ff4d6d;
-}
-
-/* 🔘 BUTTONS */
+/* =========================
+   🔘 BUTTONS
+========================= */
 .button-group {
     position: relative;
     height: 50px;
