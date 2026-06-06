@@ -11,6 +11,19 @@ body {
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
+.button-group {
+    position: relative;
+    z-index: 20;
+}
+
+#yes-btn, #no-btn {
+    position: relative;
+    z-index: 30;
+}
+
+.card-container {
+    overflow: visible;
+}
 
 /* =========================
    💖 FLOATING HEARTS
