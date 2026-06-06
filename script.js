@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const envelope = document.getElementById('envelope');
-    const noBtn = document.getElementById('no-btn');
-    const yesBtn = document.getElementById('yes-btn');
-    const question = document.getElementById('question');
-    const gif = document.getElementById('card-gif');
+    const envelope = document.getElementById("envelope");
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+    const question = document.getElementById("question");
 
-    let currentPage = 1;
-    let envelopeOpened = false;
+    let opened = false;
+    let page = 1;
 
-    // 💖 HEARTS
+    /* =========================
+       💖 HEARTS
+    ========================= */
     function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("heart");
@@ -26,59 +27,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setInterval(createHeart, 250);
 
-    // 💌 OPEN ENVELOPE
-    envelope.addEventListener('click', (e) => {
-
-        if (e.target.closest('button') || e.target.closest('.card-container')) return;
-
-        if (!envelopeOpened) {
-            envelope.classList.add('open');
-            envelopeOpened = true;
+    /* =========================
+       💌 ENVELOPE OPEN
+    ========================= */
+    envelope.addEventListener("click", (e) => {
+        if (!opened) {
+            envelope.classList.add("open");
+            opened = true;
         }
     });
 
-    // 😭 RUNAWAY BUTTON
-    function moveNoButton() {
-        const card = document.getElementById('main-card');
+    /* =========================
+       😭 NO BUTTON RUNAWAY
+    ========================= */
+    function moveNo() {
+        const card = document.getElementById("main-card");
 
-        const maxX = card.offsetWidth - noBtn.offsetWidth - 20;
-        const maxY = card.offsetHeight - noBtn.offsetHeight - 20;
+        const maxX = card.offsetWidth - noBtn.offsetWidth;
+        const maxY = card.offsetHeight - noBtn.offsetHeight;
 
         noBtn.style.left = Math.random() * maxX + "px";
         noBtn.style.top = Math.random() * maxY + "px";
     }
 
-    noBtn.addEventListener('mouseenter', moveNoButton);
-    noBtn.addEventListener('touchstart', moveNoButton);
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
 
-    // 💖 FLOW
-    yesBtn.addEventListener('click', (e) => {
+    /* =========================
+       💌 FLOW
+    ========================= */
+    yesBtn.addEventListener("click", (e) => {
         e.stopPropagation();
 
-        if (currentPage === 1) {
-            currentPage = 2;
+        if (page === 1) {
+            page = 2;
 
             question.textContent = "Will you please forgive me? 🥺❤️";
-            yesBtn.textContent = "Yes, I forgive you 🥰";
-            noBtn.textContent = "No 😤";
+            yesBtn.textContent = "Yes 🥰";
+            noBtn.style.display = "block";
 
-            noBtn.style.display = 'block';
-
-            noBtn.style.left = "60%";
-            noBtn.style.top = "60%";
-
-        } else if (currentPage === 2) {
-
-            question.innerHTML = `
-                Thank you for forgiving me Princess ❤️<br><br>
-                I promise I’ll do better for you 🥺✨
-            `;
-
-            gif.src = "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif";
-
+        } else {
+            question.innerHTML = "Thank you for forgiving me ❤️ I love you 🥺✨";
             yesBtn.style.display = "none";
             noBtn.style.display = "none";
         }
+    });
+
+    /* =========================
+       🔍 LIGHTBOX
+    ========================= */
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    document.querySelectorAll(".photo-track img").forEach(img => {
+        img.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+        });
+    });
+
+    lightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
     });
 
 });
