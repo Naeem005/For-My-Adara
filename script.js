@@ -1,15 +1,27 @@
+const envelope = document.getElementById('envelope');
+const mainCard = document.getElementById('main-card');
 const noBtn = document.getElementById('no-btn');
 const yesBtn = document.getElementById('yes-btn');
 const question = document.getElementById('question');
 const gif = document.getElementById('card-gif');
 
-// Track which page the user is on (Page 1 or Page 2)
 let currentPage = 1;
+let envelopeOpened = false;
 
-// Hide the runaway button on Page 1 so she is forced to click Next
+// Hide the runaway button on Page 1
 noBtn.style.display = 'none';
 
-// This function makes the button teleport
+// Step 1: Open the envelope on click
+envelope.addEventListener('click', (e) => {
+    // Prevent button clicks from re-triggering this envelope click event
+    if (e.target.tagName === 'BUTTON') return;
+    
+    if (!envelopeOpened) {
+        envelope.classList.add('open');
+        envelopeOpened = true;
+    }
+});
+
 function moveNoButton() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -20,28 +32,27 @@ function moveNoButton() {
 noBtn.addEventListener('mouseenter', moveNoButton);
 noBtn.addEventListener('touchstart', moveNoButton);
 
-// Handle the button clicks
-yesBtn.addEventListener('click', () => {
+// Step 2: Handle card button steps
+yesBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Stops envelope from trying to close
+    
     if (currentPage === 1) {
-        // --- TRANSITION TO PAGE 2 ---
         currentPage = 2;
         
-        // Update text and buttons
         question.textContent = "Will you please forgive me? 🥺❤️";
         yesBtn.textContent = "Yes, I forgive you 🥰";
         noBtn.textContent = "No 😤";
         
-        // Make the runaway "No" button appear
-        noBtn.style.display = 'inline-block';
+        noBtn.style.display = 'block';
+        noBtn.style.position = 'absolute';
+        
+        // Starting position relative to the popped-up card container
+        noBtn.style.left = '70%';
+        noBtn.style.top = '75%';
         
     } else if (currentPage === 2) {
-        // --- TRANSITION TO SUCCESS PAGE ---
-        question.textContent = "Yay! Thank you for forgiving me princess!❤️✨";
-        
-        // Switch to a happy, hugging cat/animal GIF
-        gif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW5nNXN4YTM4MjE1bHBvaTFtMWNzdHpreXdkdG91dHU5emtyaXZodCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IzXiddo2twMmdmU8Lv/giphy.gif";
-        
-      // Hide the runaway button permanently
+        question.textContent = "Yay! Thank you for forgiving me! I love you! ❤️✨";
+        gif.src = "https://giphy.com";
         noBtn.style.display = 'none';
     }
-}); // <-- Make sure this closing brace, parenthesis, and semicolon are here!
+});
